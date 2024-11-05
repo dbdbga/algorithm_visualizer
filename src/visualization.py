@@ -12,7 +12,7 @@ pygame.display.set_caption('Sorting Algorithm Visualizer')
 # Variables
 RECT_WIDTH = 20
 clock =pygame.time.Clock()
-FPS = 160
+FPS = 10
 RECT_BORDER_SPACING = 1
 GREEN = (36, 204, 68)
 CHARCOAL = (54, 69, 79) #Charcoal

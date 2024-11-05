@@ -33,31 +33,28 @@ def selection_sort(rectangles): # This is a generator (normal funciton with capa
 def insertion_sort(rectangles):
     num_rectangles = len(rectangles)
     for i in range(1, num_rectangles):
-        min_index = i
-        min_height = rectangles[i].height
-        rectangles[i].set_smallest()
-        j=i-1
-        while j>=0 and min_height<rectangles[j].height:
-            rectangles[j].select()
-            rectangles[j+1].height = rectangles[j].height
-            j-=1
-            draw_rects(rectangles)
-            rectangles[j].unselect()
-
-        rectangles[j+1].height = min_height
-        rectangles[j+1].set_smallest()
-        min_index = j+1
+        key = rectangles[i].height #start at 2nd element
+        j = i-1
+        rectangles[j].set_smallest() #first element, smallest so far.
+        rectangles[i].select()  # Select 2nd element
         draw_rects(rectangles)
-    
-    yield
-
-    rectangles[i].x, rectangles[min_index].x = rectangles[min_index].x, rectangles[i].x
-    rectangles[i], rectangles[min_index] = rectangles[min_index], rectangles[i]
-    
-    rectangles[min_index].unselect()
-    rectangles[i].set_sorted()
-
-    draw_rects(rectangles)
+        while j >= 0 and key < rectangles[j].height:    # If second (current) element smaller than first (previous) element
+            rectangles[i].set_smallest()    # smallest element so far.
+            rectangles[j].unselect()
+            #rectangles[j+1].height = rectangles[j].height #swaps the current element with previous element
+            rectangles[j+1].x, rectangles[j].x = rectangles[j].x, rectangles[j+1].x
+            rectangles[j+1], rectangles[j] = rectangles[j], rectangles[j+1]
+            rectangles[j+1].select()
+            #rectangles[j].set_smallest()
+            j -= 1  # Decrement j, however, if j < 0, while loop exits.
+            yield
+            draw_rects(rectangles)
+        #rectangles[j].set_smallest()
+        rectangles[j+1].height = key # Re-assigns original height back
+        for x in range(1, i+1): # Updates after every iteratio the sorted list so far.
+            rectangles[x].set_sorted()
+        
+        draw_rects(rectangles)
         
 
 
