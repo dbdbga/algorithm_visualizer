@@ -35,27 +35,34 @@ def insertion_sort(rectangles):
     for i in range(1, num_rectangles):
         key = rectangles[i].height #start at 2nd element
         j = i-1
-        rectangles[j].set_smallest() #first element, smallest so far.
+        #rectangles[j].set_smallest() #first element, smallest so far.
         rectangles[i].select()  # Select 2nd element
         draw_rects(rectangles)
-        while j >= 0 and key < rectangles[j].height:    # If second (current) element smaller than first (previous) element
-            rectangles[i].set_smallest()    # smallest element so far.
-            rectangles[j].unselect()
+        while j >= 0 and key < rectangles[j].height:    # If second (current) element smaller than first (previous) element  
             #rectangles[j+1].height = rectangles[j].height #swaps the current element with previous element
-            rectangles[j+1].x, rectangles[j].x = rectangles[j].x, rectangles[j+1].x
-            rectangles[j+1], rectangles[j] = rectangles[j], rectangles[j+1]
-            rectangles[j+1].select()
-            #rectangles[j].set_smallest()
+            rectangles[j+1].x, rectangles[j].x = rectangles[j].x, rectangles[j+1].x # swapping the current element with previous element.
+            rectangles[j+1], rectangles[j] = rectangles[j], rectangles[j+1] # swaps the actual rectangles in the array/list
+            rectangles[j].set_smallest()
+            rectangles[j+1].set_sorted()
             j -= 1  # Decrement j, however, if j < 0, while loop exits.
             yield
             draw_rects(rectangles)
+
         #rectangles[j].set_smallest()
         rectangles[j+1].height = key # Re-assigns original height back
-        for x in range(1, i+1): # Updates after every iteratio the sorted list so far.
+        for x in range(0, i+1): # Updates after every iteratio the sorted list so far.
             rectangles[x].set_sorted()
         
         draw_rects(rectangles)
-        
+        yield
+        for x in range(0, i+1): # Updates after every iteratio the sorted list so far.
+            rectangles[x].unselect()
+        draw_rects(rectangles)
+
+    for x in range(0, i+1): # Updates after every iteratio the sorted list so far.
+        rectangles[x].set_sorted()
+    
+    draw_rects(rectangles)
 
 
     print("insertion sort algo implementation")

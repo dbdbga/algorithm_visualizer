@@ -12,7 +12,7 @@ pygame.display.set_caption('Sorting Algorithm Visualizer')
 # Variables
 RECT_WIDTH = 20
 clock =pygame.time.Clock()
-FPS = 10
+FPS = 200
 RECT_BORDER_SPACING = 1
 GREEN = (36, 204, 68)
 CHARCOAL = (54, 69, 79) #Charcoal
@@ -20,6 +20,7 @@ BLACK = (0, 0, 0) #black
 RUSTY_RED = (220, 52, 59) #Rusty Red
 GREY = (85, 85, 85) # Grey
 LIGHT_BLUE = (159, 226, 191) #Aqua Blue
+YELLOW = (255, 255, 0)
 
 # Rectangles are going to be objects of the rectangle class
 class Rectangle:
@@ -68,9 +69,11 @@ def draw_rects(rectangles_list): # Draw rectangle function
         pygame.draw.line(WINDOW, CHARCOAL, (rect.x+rect.width, (WINDOW_SIZE)),(rect.x+rect.width, (WINDOW_SIZE)-rect.height))
         pygame.draw.line(WINDOW, CHARCOAL, (rect.x, (WINDOW_SIZE)-rect.height),(rect.x + rect.width, (WINDOW_SIZE)-rect.height))
 
-def display_text(txt, y, size):
+def display_text(txt, y, size, alt_color):
     FONT = pygame.font.SysFont('arial', size) # Loads the system font
     text = FONT.render(txt, True, GREEN) # Renders the text
+    if alt_color == True:
+        text = FONT.render(txt, True, YELLOW) # Renders the text
     text_rect = text.get_rect(center=(WINDOW_SIZE/2, y)) # Destination where, text is going to be.
     WINDOW.blit(text, text_rect) # Blits - copies contents of text surface onto another surface at specific location 
 

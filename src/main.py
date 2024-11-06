@@ -50,7 +50,7 @@ def main() -> None:
     rectangles = create_rectangles() # Creates a set of rectangles
     draw_rects(rectangles) # Draws the set of rectangles
     sorting_generator = selection_sort(rectangles) # Generator object (equivalent to calling the generator), once called goes to next step of execution. Generator gets created because of yield word used in function.
-
+    algo_option =1
     rectangles_copy = copy.deepcopy(rectangles)
     
     run = True
@@ -68,10 +68,19 @@ def main() -> None:
         else:
             draw_rects(rectangles)
 
-        display_text('Sorting Algorithm Visualizer: ', 60, 50)
-        display_text('Start Sort or Pause (SPACE). Reset (r). Quit (q). Randomize Data (d).', 100, 30)
-        display_text('Sorts: Selection (1), Insertion (2), Bubble (3), Quick (4), BOGO (5).', 130, 30)
+        display_text('Sorting Algorithm Visualizer: ', 60, 50, 0)
+        display_text('Start Sort or Pause (SPACE). Reset (r). Quit (q). Randomize Data (d).', 100, 30, 0)
+        display_text('Sorts: Selection (1), Insertion (2), Bubble (3), Quick (4), BOGO (5).', 130, 30, 0)
         
+        if algo_option == 1:
+            display_text('Selection Sort Ready!', 160, 30, 1)
+        if algo_option == 2:
+            display_text('Insertion Sort Ready!', 160, 30, 1)
+        if algo_option == 3:
+            display_text('Bubble Sort Ready!', 160, 30, 1)
+        if algo_option == 4:
+            display_text('Quick Sort Ready!', 160, 30, 1)
+
         for event in pygame.event.get(): # Iterates through every event (mouseclicks, keyboard, exit application, etc.)
             if event.type == pygame.QUIT: # If event is window is closed with mouse click.
                 run = False
@@ -94,18 +103,22 @@ def main() -> None:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
                     sorting_generator = selection_sort(rectangles)
+                    algo_option = 1
                 if event.key == pygame.K_2:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
                     sorting_generator = insertion_sort(rectangles)
+                    algo_option = 2
                 if event.key == pygame.K_3:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
                     sorting_generator = bubble_sort(rectangles)
+                    algo_option = 3
                 if event.key == pygame.K_4:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
                     sorting_generator = quick_sort(rectangles)
+                    algo_option = 4
                 
         pygame.display.update() # Alterations to screen will get rendered. Can use .flip() to update entire screen too.
 
