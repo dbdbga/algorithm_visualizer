@@ -79,7 +79,7 @@ def main() -> None:
         if algo_option == 3:
             display_text('Bubble Sort Ready!', 160, 30, 1)
         if algo_option == 4:
-            display_text('Quick Sort Ready!', 160, 30, 1)
+            display_text('Quick Sort (Not Implemented yet)', 160, 30, 1)
         if algo_option == 5:
             display_text('Bogo Sort Ready!', 160, 30, 1)
 
@@ -94,13 +94,31 @@ def main() -> None:
                 if event.key == pygame.K_r:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
-                    sorting_generator = selection_sort(rectangles)
+                    if algo_option == 1:
+                        sorting_generator = selection_sort(rectangles)
+                    if algo_option == 2:
+                        sorting_generator = insertion_sort(rectangles)
+                    if algo_option == 3:
+                        sorting_generator = bubble_sort(rectangles)
+                    if algo_option == 4:
+                        sorting_generator = quick_sort(rectangles)
+                    if algo_option == 5:
+                        sorting_generator = bogo_sort(rectangles)
                 if event.key == pygame.K_d:
                     sorting = False
                     rectangles = create_rectangles()
                     rectangles_copy = copy.deepcopy(rectangles)
                     draw_rects(rectangles)
-                    sorting_generator = selection_sort(rectangles)
+                    if algo_option == 1:
+                        sorting_generator = selection_sort(rectangles)
+                    if algo_option == 2:
+                        sorting_generator = insertion_sort(rectangles)
+                    if algo_option == 3:
+                        sorting_generator = bubble_sort(rectangles)
+                    if algo_option == 4:
+                        sorting_generator = quick_sort(rectangles)
+                    if algo_option == 5:
+                        sorting_generator = bogo_sort(rectangles)
                 if event.key == pygame.K_1:
                     sorting = False
                     rectangles = copy.deepcopy(rectangles_copy)
@@ -128,7 +146,6 @@ def main() -> None:
                     algo_option = 5
                 
         pygame.display.update() # Alterations to screen will get rendered. Can use .flip() to update entire screen too.
-
         
     pygame.quit() # Pygame is closed as it is initialized
 
