@@ -80,6 +80,8 @@ def main() -> None:
             display_text('Bubble Sort Ready!', 160, 30, 1)
         if algo_option == 4:
             display_text('Quick Sort Ready!', 160, 30, 1)
+        if algo_option == 5:
+            display_text('Bogo Sort Ready!', 160, 30, 1)
 
         for event in pygame.event.get(): # Iterates through every event (mouseclicks, keyboard, exit application, etc.)
             if event.type == pygame.QUIT: # If event is window is closed with mouse click.
@@ -119,6 +121,11 @@ def main() -> None:
                     rectangles = copy.deepcopy(rectangles_copy)
                     sorting_generator = quick_sort(rectangles)
                     algo_option = 4
+                if event.key == pygame.K_5:
+                    sorting = False
+                    rectangles = copy.deepcopy(rectangles_copy)
+                    sorting_generator = bogo_sort(rectangles)
+                    algo_option = 5
                 
         pygame.display.update() # Alterations to screen will get rendered. Can use .flip() to update entire screen too.
 

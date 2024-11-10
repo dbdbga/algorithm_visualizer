@@ -10,7 +10,7 @@ WINDOW = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE)) # Creates window an
 pygame.display.set_caption('Sorting Algorithm Visualizer')
 
 # Variables
-RECT_WIDTH = 20
+RECT_WIDTH = 30
 clock =pygame.time.Clock()
 FPS = 200
 RECT_BORDER_SPACING = 1
